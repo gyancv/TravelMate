@@ -1,0 +1,421 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMate | Tour Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <span class="logo-icon">✈</span>
+            TravelMate
+        </div>
+
+        <nav>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#tours">Tours</a>
+            <a href="#customers">Customers</a>
+            <a href="#bookings">Bookings</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div>
+                <p class="eyebrow">TRAVEL MANAGEMENT SYSTEM</p>
+                <h1>Manage your travel business</h1>
+                <p class="hero-description">
+                    Explore destinations, manage customers,
+                    and track bookings from one place.
+                </p>
+            </div>
+
+            <div class="hero-icon">🌍</div>
+        </section>
+
+
+        <!-- DASHBOARD -->
+        <section id="dashboard">
+
+            <h2>Dashboard Overview</h2>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon">🌍</div>
+                    <p>Total Tours</p>
+                    <h3 id="totalTours">0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <p>Total Customers</p>
+                    <h3 id="totalCustomers">0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🎫</div>
+                    <p>Total Bookings</p>
+                    <h3 id="totalBookings">0</h3>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <p>Total Revenue</p>
+                    <h3 id="totalRevenue">₹0</h3>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TOUR MANAGEMENT -->
+        <section id="tours">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Tour Packages</h2>
+                    <p>Explore and manage available destinations</p>
+                </div>
+
+                <button id="showTourFormBtn" class="primary-button">
+                    + Add Tour
+                </button>
+
+            </div>
+
+
+            <!-- ADD TOUR FORM -->
+            <div id="tourFormContainer" class="form-container hidden">
+
+                <h3>Add New Tour</h3>
+
+                <form id="tourForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Destination</label>
+                            <input
+                                type="text"
+                                id="destination"
+                                required
+                                placeholder="e.g. Manali"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="category" required>
+                                <option value="">Select category</option>
+                                <option>Adventure</option>
+                                <option>Beach</option>
+                                <option>Heritage</option>
+                                <option>Nature</option>
+                                <option>Luxury</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Duration (Days)</label>
+                            <input
+                                type="number"
+                                id="duration"
+                                min="1"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Price Per Person</label>
+                            <input
+                                type="number"
+                                id="price"
+                                min="1"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Available Seats</label>
+                            <input
+                                type="number"
+                                id="seats"
+                                min="1"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="primary-button">
+                            Save Tour
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelTourFormBtn"
+                            class="secondary-button"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- SEARCH AND FILTER -->
+            <div class="toolbar">
+
+                <input
+                    type="text"
+                    id="searchTour"
+                    placeholder="Search destination..."
+                >
+
+                <select id="filterCategory">
+                    <option value="All">All Categories</option>
+                    <option>Adventure</option>
+                    <option>Beach</option>
+                    <option>Heritage</option>
+                    <option>Nature</option>
+                    <option>Luxury</option>
+                </select>
+
+                <select id="sortTours">
+                    <option value="default">Sort by</option>
+                    <option value="lowToHigh">Price: Low to High</option>
+                    <option value="highToLow">Price: High to Low</option>
+                </select>
+
+            </div>
+
+
+            <!-- TOUR CARDS -->
+            <div id="tourList" class="tour-grid"></div>
+
+        </section>
+
+
+        <!-- CUSTOMERS -->
+        <section id="customers">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Customers</h2>
+                    <p>Manage customer information</p>
+                </div>
+
+                <button id="showCustomerFormBtn" class="primary-button">
+                    + Add Customer
+                </button>
+
+            </div>
+
+
+            <div id="customerFormContainer" class="form-container hidden">
+
+                <h3>Register Customer</h3>
+
+                <form id="customerForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Customer Name</label>
+                            <input
+                                type="text"
+                                id="customerName"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input
+                                type="email"
+                                id="customerEmail"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input
+                                type="number"
+                                id="customerAge"
+                                min="1"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="primary-button">
+                            Register Customer
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelCustomerFormBtn"
+                            class="secondary-button"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="customerTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOOKINGS -->
+        <section id="bookings">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Bookings</h2>
+                    <p>Manage customer tour reservations</p>
+                </div>
+
+                <button id="showBookingFormBtn" class="primary-button">
+                    + Create Booking
+                </button>
+
+            </div>
+
+
+            <!-- BOOKING FORM -->
+            <div id="bookingFormContainer" class="form-container hidden">
+
+                <h3>Create Booking</h3>
+
+                <form id="bookingForm">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Customer</label>
+                            <select id="bookingCustomer" required>
+                                <option value="">Select customer</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tour</label>
+                            <select id="bookingTour" required>
+                                <option value="">Select tour</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Number of Persons</label>
+                            <input
+                                type="number"
+                                id="persons"
+                                min="1"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button type="submit" class="primary-button">
+                            Create Booking
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelBookingFormBtn"
+                            class="secondary-button"
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Customer</th>
+                            <th>Destination</th>
+                            <th>Persons</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="bookingTable"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>TravelMate JavaScript Fundamentals Project</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
